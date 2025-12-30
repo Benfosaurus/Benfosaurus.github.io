@@ -1,0 +1,117 @@
+<div id="project1" class="page">
+    <a href="#projects" class="back-btn nav-link">← Back to Projects</a>
+    <h2>Image-Audio Converter</h2>
+    <div class="project-detail">
+        <p>
+            A Python tool that converts audio to and from images by reading RGB pixel data as audio samples.
+            This mapping between visual and audio enables interesting transformations of the image through use of audio effects.
+            The tool also allows for adding microphone input to the audio version while it is playing, allowing the user to add their own mark to an image.
+        </p>
+        
+        <div style="background: #fff; border: 2px solid #000; padding: 2rem; margin: 2rem 0;">
+            <h3>Technical Approach</h3>
+            <p>
+                The conversion process flattens RGB image data from three dimensions into one and interprets it directly as audio sample data.
+                This creates a mapping where the brightness of different color values become audio samples
+            </p>
+        </div>
+            
+        <div style="background: #fff; border: 2px solid #000; padding: 2rem; margin: 2rem 0;">
+            <h3>Example: Europa Moon Image</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
+                <div>
+                    <p style="font-weight: bold; margin-bottom: 0.5rem;">Original Image</p>
+                    <div style="background: #f5f5f5; border: 2px solid #000; padding: 1rem; text-align: center;">
+                        <img src="assets/Europa.png" alt="Europa moon" style="max-width: 100%; height: auto; display: block;">
+                    </div>
+                </div>
+                <div>
+                    <p style="font-weight: bold; margin-bottom: 0.5rem;">Converted Waveform</p>
+                    <div style="background: #f5f5f5; border: 2px solid #000; padding: 1rem; text-align: center;">
+                        <img src="assets/EuropaWaveform.png" alt="Europa waveform" style="max-width: 100%; height: auto; display: block;">
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 1rem;">
+                <p style="font-weight: bold; margin-bottom: 0.5rem;">Audio Output</p>
+                <div style="background: #f5f5f5; border: 2px solid #000; padding: 1rem;">
+                    <audio controls style="width: 100%;">
+                        <source src="assets/Europa.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+            
+        <div style="background: #fff; border: 2px solid #000; padding: 2rem; margin: 2rem 0;">
+            <h3>Audio Effects as Visual Transformations</h3>
+            <p style="margin-bottom: 1.5rem;">
+                By applying audio effects to the converted sound and reconverting to images, various visual effects can be created.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                <div>
+                    <p style="font-weight: bold; margin-bottom: 0.5rem;">Reverb Effect</p>
+                    <div style="background: #f5f5f5; border: 2px solid #000; padding: 1rem; text-align: center; margin-bottom: 0.5rem;">
+                        <img src="assets/EuropaReverb.png" alt="Europa with reverb effect" style="max-width: 100%; height: auto; display: block;">
+                    </div>
+                    <audio controls style="width: 100%;">
+                        <source src="assets/EuropaReverb.wav" type="audio/wav">
+                    </audio>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                        Reverb creates ghostly echoes of the image.
+                    </p>
+                </div>
+                
+                <div>
+                    <p style="font-weight: bold; margin-bottom: 0.5rem;">High-Pass Filter</p>
+                    <div style="background: #f5f5f5; border: 2px solid #000; padding: 1rem; text-align: center; margin-bottom: 0.5rem;">
+                        <img src="assets/EuropaHiPass.png" alt="Europa with high-pass filter" style="max-width: 100%; height: auto; display: block;">
+                    </div>
+                    <audio controls style="width: 100%;">
+                        <source src="assets/EuropaHiPass.wav" type="audio/wav">
+                    </audio>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                        A high pass filter eccentuates the edges of the image.
+                    </p>
+                </div>
+                
+                <div>
+                    <p style="font-weight: bold; margin-bottom: 0.5rem;">Octave Up</p>
+                    <div style="background: #f5f5f5; border: 2px solid #000; padding: 1rem; text-align: center; margin-bottom: 0.5rem;">
+                        <img src="assets/EuropaDouble.png" alt="Europa octave up" style="max-width: 100%; height: auto; display: block;">
+                    </div>
+                    <audio controls style="width: 100%;">
+                        <source src="assets/EuropaDouble.wav" type="audio/wav">
+                    </audio>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                        Doubling the frequency of every pitch in the image leaves only white lines in the shape of the image.
+                    </p>
+                </div>
+            </div>
+        </div>
+            
+        <div style="background: #fff; border: 2px solid #000; padding: 2rem; margin: 2rem 0;">
+            <h3>Real-Time Visual Generation</h3>
+            <p style="margin-bottom: 1rem;">
+                The tool supports live microphone input, converting audio in real-time alongside an image to generate dynamic visuals.
+                Below is an example of this live microphone input. I created this by using the tool to generate audio from the starting image, cutting up the generated audio and applying effects, and improvising over the generated audio.
+            </p>
+            <div style="background: #f5f5f5; border: 2px solid #000; padding: 1rem; text-align: center;">
+                <video controls style="max-width: 100%; height: auto; border: 2px solid #000;">
+                    <source src="assets/Europa.mp4" type="video/mp4">
+                    Your browser does not support the video element.
+                </video>
+                <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                    Demonstration of live audio improvisation generating visual output
+                </p>
+            </div>
+        </div>
+        <div style="background: #000; color: #fff; border: 2px solid #000; padding: 2rem; margin: 2rem 0; text-align: center;">
+            <p style="color: #fff; margin-bottom: 1rem; font-weight: bold;">View Source Code</p>
+            <a href="https://github.com/Benfosaurus/ImageToAudio" target="_blank" style="color: #fff; text-decoration: underline; font-weight: bold;">
+                GitHub Repository →
+            </a>
+        </div>
+    </div>
+</div>

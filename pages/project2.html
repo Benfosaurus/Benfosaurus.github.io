@@ -1,0 +1,83 @@
+<div id="project2" class="page">
+    <a href="#projects" class="back-btn nav-link">← Back to Projects</a>
+    <h2>Custom Tuning System Tuner</h2>
+    <div class="project-detail">
+        <p>
+            A chromatic tuner with support for custom tuning systems beyond standard equal temperament.
+            This tool allows people to explore and tune to alternative tuning systems including support for just intonation, historical temperaments, and user-defined scales.
+        </p>
+        
+        <h3>Live Tuner</h3>
+        <div id="tuner-app">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <button id="startBtn" class="submit-btn">Start Tuner</button>
+                <button id="stopBtn" class="submit-btn" style="display: none;">Stop Tuner</button>
+            </div>
+            
+            <div style="background: #f5f5f5; padding: 2rem; border: 2px solid #000; margin-bottom: 2rem;">
+                <div style="text-align: center; margin-bottom: 1rem;">
+                    <div id="noteDisplay" style="font-size: 4rem; font-weight: bold; color: #000; margin-bottom: 0.5rem;">--</div>
+                    <div id="frequencyDisplay" style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">-- Hz</div>
+                    <div id="centsDisplay" style="font-size: 1.2rem; color: #000;">-- cents</div>
+                </div>
+                
+                <div style="margin: 2rem auto; max-width: 400px;">
+                    <div style="background: #fff; height: 20px; border: 2px solid #000; overflow: hidden; position: relative;">
+                        <div id="tuningIndicator" style="position: absolute; width: 4px; height: 100%; background: #000; left: 50%; transform: translateX(-50%); transition: left 0.1s;"></div>
+                        <div style="position: absolute; width: 2px; height: 100%; background: #666; left: 50%; transform: translateX(-50%);"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.9rem; color: #666;">
+                        <span>-50¢</span>
+                        <span>0¢</span>
+                        <span>+50¢</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #fff; padding: 1.5rem; border: 2px solid #000; margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: #000; font-weight: bold;">Tuning System</label>
+                <select id="tuningSystem" style="width: 100%; padding: 0.75rem; border: 2px solid #000; background: #fff; color: #000; font-family: inherit;">
+                    <option value="equal">Equal Temperament (A=440Hz)</option>
+                    <option value="equal432">Equal Temperament (A=432Hz)</option>
+                    <option value="just">Just Intonation</option>
+                    <option value="pythagorean">Pythagorean Tuning</option>
+                    <option value="meantone">Quarter-Comma Meantone</option>
+                    <option value="31edo">31-EDO (31 Equal Divisions of Octave)</option>
+                    <option value="custom">Custom Tuning...</option>
+                </select>
+            </div>
+            
+            <div id="customTuningPanel" style="display: none; background: #f5f5f5; padding: 1.5rem; border: 2px solid #000; margin-bottom: 1rem;">
+                <h3 style="color: #000; margin-bottom: 1rem; font-size: 1.2rem; font-weight: bold;">Custom Tuning Configuration</h3>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: #000; font-weight: bold;">Reference Frequency (Hz)</label>
+                    <input type="number" id="customBaseFreq" value="440" step="0.1" style="width: 100%; padding: 0.75rem; border: 2px solid #000; background: #fff; color: #000; font-family: inherit;">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: #000; font-weight: bold;">Repeat Interval (e.g., 2/1 for octave, 3/1 for tritave)</label>
+                    <input type="text" id="customRepeat" value="2/1" placeholder="2/1" style="width: 100%; padding: 0.75rem; border: 2px solid #000; background: #fff; color: #000; font-family: inherit;">
+                    <div style="font-size: 0.85rem; color: #666; margin-top: 0.25rem;">Enter as ratio (2/1) or cents (1200.0)</div>
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: #000; font-weight: bold;">Scale Steps</label>
+                    <div style="font-size: 0.85rem; color: #666; margin-bottom: 0.5rem;">Enter one step per line as: name, interval (ratio like 3/2 or cents like 702.0)</div>
+                    <textarea id="customSteps" rows="12" placeholder="C, 1/1
+D, 9/8
+E, 5/4
+F, 4/3
+G, 3/2
+A, 5/3
+B, 15/8" style="width: 100%; padding: 0.75rem; border: 2px solid #000; background: #fff; color: #000; font-family: monospace; font-size: 0.9rem; resize: vertical;"></textarea>
+                </div>
+                
+                <button id="applyCustom" class="submit-btn" style="width: 100%;">Apply Custom Tuning</button>
+                <div id="customError" style="color: #000; margin-top: 0.5rem; font-size: 0.9rem; font-weight: bold;"></div>
+            </div>
+            
+            <div id="systemInfo" style="background: #f5f5f5; padding: 1.5rem; border: 2px solid #000; color: #333; font-size: 0.9rem;"></div>
+        </div>
+    </div>
+</div>
