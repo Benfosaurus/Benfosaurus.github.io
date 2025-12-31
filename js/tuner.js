@@ -325,6 +325,7 @@ function autoCorrelate(buffer, sampleRate) {
     
     if (rms < 0.005) return -1;
 
+    // trim off silence from beginning and end of chunk
     let r1 = 0, r2 = size - 1, thres = 0.2;
     for (let i = 0; i < size / 2; i++) {
         if (Math.abs(buffer[i]) < thres) { 
@@ -342,6 +343,7 @@ function autoCorrelate(buffer, sampleRate) {
     buffer = buffer.slice(r1, r2);
     size = buffer.length;
 
+    // autocorrelate (multiply signal by itself shifted 'i' samples) to find repeating patterns
     let c = new Array(size).fill(0);
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size - i; j++) {
@@ -349,9 +351,11 @@ function autoCorrelate(buffer, sampleRate) {
         }
     }
 
+    // skip the peak at 0 and it's descent
     let d = 0;
     while (c[d] > c[d + 1]) d++;
     
+    // find the first peak that isnt at 0
     let maxval = -1, maxpos = -1;
     for (let i = d; i < size; i++) {
         if (c[i] > maxval) {
@@ -362,11 +366,14 @@ function autoCorrelate(buffer, sampleRate) {
     
     let T0 = maxpos;
 
+    // parabolic interpolation to find peaks in between samples
+    // allows for accuracy better than the sample rate would otherwise allow
     let x1 = c[T0 - 1], x2 = c[T0], x3 = c[T0 + 1];
     let a = (x1 + x3 - 2 * x2) / 2;
     let b = (x3 - x1) / 2;
     if (a) T0 = T0 - b / (2 * a);
 
+    // convert from samplerate to hz
     return sampleRate / T0;
 }
 
